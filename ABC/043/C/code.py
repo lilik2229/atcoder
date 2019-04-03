@@ -9,22 +9,20 @@ def main():
 
     # 位置文字ずつ標準入力を配列として読み込み
     # s = list(input().rstrip())
-    n = int(input().rstrip())
-    slist = input().rstrip().split(' ')
-    num_slist = []
-    Alice = 0
-    Bob = 0
-    for i in range(0,n):
-        num_slist.append(int(slist[i]))
-    num_slist.sort(reverse = True)
+    N = int(input().rstrip())
+    a_list = input().rstrip().split(' ')
+    cost = 0
+    min_cost = 1e10
+    for i in range(-100,101):
+        cost = 0
+        for a in a_list:
+            a_num = int(a)
+            cost = cost + (a_num - i) * (a_num-i)
+            # print(i,a_num,cost)
+        if(cost < min_cost):
+            min_cost = cost
+            # print('new ans',min_cost)
+    print(min_cost)
     
-    for i in range(0,n):
-        if i % 2 == 0:
-            Alice = Alice + int(num_slist[i])
-        else:
-            Bob = Bob + int(num_slist[i])
-        
-    print(Alice - Bob)    
-   
 if __name__ == '__main__':
     main()

@@ -10,15 +10,21 @@ def main():
     # 位置文字ずつ標準入力を配列として読み込み
     # s = list(input().rstrip())
     s = list(input().rstrip())
-    ans = []
-    i = 0
+    dict = {}
+    b_flag = True
     for char in s:
-        if char=='0' or char=='1':
-            ans.append(char)
-        elif char=='B' and len(ans) > 0:
-            ans.pop()
-    
-    print(''.join(ans))    
-   
+        if(char in dict.keys()):
+            dict[char] = dict[char] + 1
+        else:
+            dict[char] = 1
+        
+    for v in dict.values():
+        if v % 2 == 1:
+            b_flag = False
+    if b_flag:
+        print('Yes')
+    else:
+        print('No')
+        
 if __name__ == '__main__':
     main()
