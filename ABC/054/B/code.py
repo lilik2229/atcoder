@@ -18,7 +18,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -35,8 +35,32 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
-    
+    N,M = (int(_) for _ in input().split())
+    A =[]
+    B =[]
+    for i in range(N):
+        A.append(list(_ for _ in input()))
+    for i in range(M):
+        B.append(list(_ for _ in input()))
+
+    for i in range(N-M+1):
+        for j in range(N-M+1):
+            # check
+            flag = True
+            for k in range(M):
+                for l in range(M):
+                    if A[i+k][j+l] != B[k][l]:
+                        flag = False
+                        break
+            if(flag):
+                ans = 'Yes'
+                print(ans)
+                exit()
+            else:
+                ans = 'No'
+
+
+    print(ans)
+
 if __name__ == '__main__':
     main()

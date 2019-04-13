@@ -18,7 +18,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -35,8 +35,19 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
+    x = int(input().rstrip())
+    if x <= 6:
+        ans = 1
+    elif x <=11:
+        ans = 2
+    else:
+        if(x%11 == 0):
+            ans = (x // 11) * 2
+        elif(x%11 <= 6):
+            ans = (x // 11) * 2 +1
+        else:
+            ans = (x // 11) * 2 +2
+    print(ans)
     
 if __name__ == '__main__':
     main()
