@@ -2,6 +2,15 @@ from functools import reduce
 import math
 
 def main():
+    # 文字列の2進数を数値にする
+    # '101' → '5'
+    # 文字列の頭に'0b'をつけてint()にわたす
+    # binary = int('0b'+'101',0)
+
+    # 2進数で立っているbitを数える
+    # 101(0x5) → 2
+    # cnt_bit = bin(5).count('1')
+    
     # N! を求める
     # f = math.factorial(N)
     
