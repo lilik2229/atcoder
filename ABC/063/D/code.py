@@ -1,6 +1,15 @@
 from functools import reduce
 import math
 
+def is_ok(t,h,A,B):
+    cnt = 0 # 必要な攻撃回数
+    for hp in h:
+        cnt += max(0,math.ceil((hp-B*t)/(A-B)))
+    if t >= cnt:
+        return True
+    else:
+        return False
+
 def main():
     # 文字列の2進数を数値にする
     # '101' → '5'
@@ -43,10 +52,22 @@ def main():
     # 変数:a = [2, 4, 5, 7]    
     N,A,B = (int(_) for _ in input().split())
     h = []
+    max_h = 0
     for i in range(N):
         h.append(int(input()))
-        
-    print(a)
+        max_h = max(h[i],max_h)        
+    ng = -1
+    ok = math.ceil(max_h/B) # 考えうる最大の攻撃回数
+
+    # 二分探索
+    while (abs(ok-ng)>1):
+        mid = (ok + ng) //2
+        if is_ok(mid,h,A,B):
+            ok = mid
+        else:
+            ng = mid
+    print(ok)
     
 if __name__ == '__main__':
     main()
+
