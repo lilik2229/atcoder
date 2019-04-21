@@ -43,44 +43,18 @@ def main():
     # 変数:a = [2, 4, 5, 7]    
     N = int(input().rstrip())
     S = list(_ for _ in input())
-
-    S_num = []
-    index = 0 
-    now = ''
-    if(S[0]=='#'):
-        S_num.append(1)
-        now = '#'
-    else:
-        S_num.append(-1)
-        now = '.'
-        
-    for i in range(1,N):
-        if(S[i]=='#' and now =='#'):
-            S_num[index] +=1
-        elif(S[i]=='.' and now =='.'):
-            S_num[index] +=-1
-        elif(S[i]=='#' and now !='#'):
-            S_num.append(1)
-            now = '#'
-            index +=1
-        elif(S[i]=='.' and now !='.'):
-            S_num.append(-1)
-            now = '.'
-            index +=1
-    # print(S_num)
-    ans = 0
-    b = 0
-    w = 0
-    # ###.#.. → 3,-1,1,-2 → 5,-2
-    # #...#.. → 1,-3,1,-2 → 1,-2
-    for i in range(len(S_num)-1):
-        if(S_num[i]>0 and S_num[i+1]<0):
-            b += S_num[i]
-            w += -S_num[i+1]
-            # ans += min(S_num[i],-S_num[i+1])
-            # if((S_num[i] > -S_num[i+1]) and i+2 < len(S_num)-1):
-            #     S_num[i+2] += S_num[i] -S_num[i+1]
-    ans = min(b,w)
+    
+    # 基準点iより右にいる白石の数と基準点iより左にいる黒石の数の和が答え
+    # i=0 のとき答えは文字列中の白石の数になる
+    cnt_w = S.count('.') # iより右みいる白石の数
+    cnt_b = 0 # iより左にいる文字列中の黒石の数
+    ans = cnt_w 
+    for i in range(N): # i番目の石を左に置くとき       
+        if(S[i] == '#'): # 黒石を左に置く場合
+            cnt_b +=1
+        else: # 白石を左に置く場合
+            cnt_w -=1
+        ans = min(ans,cnt_b+cnt_w)
     print(ans)
     
 if __name__ == '__main__':
