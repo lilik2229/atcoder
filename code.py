@@ -13,6 +13,12 @@ def main():
     
     # N! を求める
     # f = math.factorial(N)
+
+    # N の逆元
+    # N_inv = pow(N,MOD-2,MOD)
+
+    # nCr
+    # Nの階乗 * rの階乗の逆元 * n-rの階乗の逆元
     
     # 切り捨て
     # 4 // 3
@@ -21,6 +27,9 @@ def main():
     
     # 初期値用:十分大きい数(100億)
     INF = float("inf")
+
+    # 大きな素数
+    MOD = 10**9+7
     
     # 1文字のみを読み込み
     # 入力:2
