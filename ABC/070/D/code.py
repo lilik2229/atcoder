@@ -1,6 +1,19 @@
 from functools import reduce
+from collections import deque
 import math
 
+def bfs(i,E,N):
+    q = deque()
+    q.append(i)
+    d = [-1]*N
+    d[i] = 0
+    while q:
+        next_node = q.popleft()
+        for e in E[next_node]:
+            if d[e[0]] == -1:
+                d[e[0]] = d[next_node] + e[1]                
+                q.append(e[0])
+    return d
 def main():
     # 文字列の2進数を数値にする
     # '101' → '5'
@@ -66,26 +79,16 @@ def main():
         s1,s2 = list(int(_) for _ in input().split())
         x.append(s1-1)
         y.append(s2-1)
-    d = []
-    for i in range(N):
-        d_i = list(INF for j in range(N))
-        d.append(d_i)
-        
-    for i in range(N):
-        for j in range(N):
-            if(i == j):
-                d[i][j] = 0
+    
+    e = [[] for i in range(N)]
     for i in range(N-1):
-        d[a[i]][b[i]] = c[i]
-        d[b[i]][a[i]] = c[i]
+        e[a[i]].append((b[i],c[i]))
+        e[b[i]].append((a[i],c[i]))
 
-    for k in range(N):
-        for i in range(N):
-            for j in range(N):
-                d[i][j] = min(d[i][j],d[i][k]+d[k][j])
+    d = bfs(K-1,e,N)
 
     for i in range(Q):        
-        print(d[x[i]][K-1]+d[K-1][y[i]])
+        print(d[x[i]]+d[y[i]])
     
 if __name__ == '__main__':
     main()
