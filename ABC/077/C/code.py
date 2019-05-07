@@ -1,6 +1,7 @@
 from functools import reduce
 import math
-
+import bisect
+import collections 
 def main():
     # 文字列の2進数を数値にする
     # '101' → '5'
@@ -50,13 +51,19 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    X, Y = (int(_) for _ in input().split())
-    if X>Y:        
-        print('>')
-    elif X == Y:
-        print('=')
-    else:
-        print('<')
-        
+    N = int(input())
+    A = list(int(_) for _ in input().split())
+    B = list(int(_) for _ in input().split())
+    C = list(int(_) for _ in input().split())
+    A.sort()
+    C.sort()
+    ans = 0
+
+    for i in range(N):
+        a_index = bisect.bisect_left(A,B[i])
+        c_index = bisect.bisect_right(C,B[i])
+        ans += a_index * (N-c_index)
+
+    print(ans)
 if __name__ == '__main__':
     main()
