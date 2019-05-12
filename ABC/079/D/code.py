@@ -1,5 +1,6 @@
 from functools import reduce
 import math
+import copy
 
 def main():
     # 文字列の2進数を数値にする
@@ -33,7 +34,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +51,25 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
+    H, W = (int(_) for _ in input().split())
+    c = []
+    for i in range(10):
+        c.append(list(int(_) for _ in input().split()))
+    A = []
+    for i in range(H):
+        A.append(list(int(_) for _ in input().split()))
+
+    d = copy.deepcopy(c)
+    for k in range(10):
+        for i in range(10):
+            for j in range(10):
+                d[i][j] = min(d[i][j],d[i][k]+d[k][j])
+    ans = 0
+    for i in range(H):
+        for j in range(W):
+            if A[i][j] != -1:
+                ans += d[A[i][j]][1]
+    print(ans)
     
 if __name__ == '__main__':
     main()
