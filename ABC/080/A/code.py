@@ -50,9 +50,8 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    N, Z, W = (int(_) for _ in input().split())
-    a = list(int(_) for _ in input().split())
-    print(a)
+    a, b, c = (int(_) for _ in input().split())  
+    print(min(a*b,c))
     
 if __name__ == '__main__':
     main()
