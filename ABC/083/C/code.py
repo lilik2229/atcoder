@@ -1,5 +1,9 @@
 from functools import reduce
 import math
+import fractions
+
+def lcm(a,b):
+    return (a*b)/fractions.gcd(a,b)
 
 def main():
     # 文字列の2進数を数値にする
@@ -33,7 +37,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +54,13 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
+    X,Y = (int(_) for _ in input().split())
+    ans = 0
+    tmp = X
+    while tmp<=Y:
+        ans +=1
+        tmp *= 2
+    print(ans)
     
 if __name__ == '__main__':
     main()
