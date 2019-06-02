@@ -33,7 +33,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +50,30 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
+    N = int(input())
+    t = []
+    x = []
+    y = []
+    for i in range(N):
+        s1,s2,s3 = (int(_) for _ in input().split())
+        t.append(s1)
+        x.append(s2)
+        y.append(s3)
+
+    if x[0] + y[0] > t[0]:
+        print('No')
+        return
     
-    print(a)
+    for i in range(1,N):
+        d = abs(x[i] - x[i-1]) + abs(y[i] - y[i-1])
+        if  d > t[i] - t[i-1]:
+            print('No')
+            return
+        if (t[i] - t[i-1])%2 != d %2:
+            print('No')
+            return
+        
+    print('Yes')
     
 if __name__ == '__main__':
     main()
