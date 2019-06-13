@@ -49,13 +49,9 @@ def main():
     # 1文字ずつ標準入力を配列として読み込み
     # 入力:2457
     # a = list(int(_) for _ in input())
-    # 変数:a = [2, 4, 5, 7]
-    s = input().rstrip()
-    if s.count('Y') >0:
-        print('Four')
-    else:
-        print('Three')
-        
+    # 変数:a = [2, 4, 5, 7]    
+    
+    print(a)
+    
 if __name__ == '__main__':
     main()
- 

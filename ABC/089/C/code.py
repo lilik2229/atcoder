@@ -1,6 +1,7 @@
 from functools import reduce
 import math
-
+import collections
+import itertools
 def main():
     # 文字列の2進数を数値にする
     # '101' → '5'
@@ -33,7 +34,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -49,13 +50,17 @@ def main():
     # 1文字ずつ標準入力を配列として読み込み
     # 入力:2457
     # a = list(int(_) for _ in input())
-    # 変数:a = [2, 4, 5, 7]
-    s = input().rstrip()
-    if s.count('Y') >0:
-        print('Four')
-    else:
-        print('Three')
-        
+    # 変数:a = [2, 4, 5, 7]    
+    N = int(input())
+    d = collections.defaultdict(int)
+    for _ in range(N):
+        S = input()
+        d[S[0]] += 1
+    seq = ('M','A','R','C','H')
+    ans = 0
+    for i in list(itertools.combinations(seq,3)):
+        ans += d[i[0]] * d[i[1]] * d[i[2]]
+    print(ans)
+    
 if __name__ == '__main__':
     main()
- 
