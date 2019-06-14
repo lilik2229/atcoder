@@ -59,8 +59,31 @@ def main():
         L.append(s1)
         R.append(s2)
         D.append(s3)
-    
-    print(a)
+    if M ==0:
+        print('Yes')
+        return
+    adj = [[] for _ in range(N)]
+    for i in range(M):
+        adj[L[i]-1].append([R[i]-1,D[i]])
+        adj[R[i]-1].append([L[i]-1,-1*D[i]])
+
+    dist = [None for _ in range(N)]
+    for i in range(N):
+        if dist[i] is not None:
+            continue
+        stack = [i]
+        dist[i] = 0
+        while stack:
+            v=stack.pop()
+            for to,cost in adj[v]:
+                if dist[to] is None:
+                    stack.append(to)
+                    dist[to] = dist[v]+cost
+                elif dist[to] != dist[v] +cost:
+                    print('No')
+                    return
+        
+    print('Yes')
     
 if __name__ == '__main__':
     main()
