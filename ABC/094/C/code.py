@@ -1,6 +1,6 @@
 from functools import reduce
 import math
-
+import copy
 def main():
     # 文字列の2進数を数値にする
     # '101' → '5'
@@ -33,7 +33,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +50,16 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
-    
+    N = int(input())
+    X = list(int(_) for _ in input().split())
+    X_tmp = copy.deepcopy(X)
+    X_tmp.sort()
+    X_avg = (X_tmp[(N//2)-1] + X_tmp[(N//2)])/2
+    for i in range(N):
+        if X[i] > X_avg:
+            print(X_tmp[(N//2)-1])
+        else:
+            print(X_tmp[(N//2)])
+            
 if __name__ == '__main__':
     main()
