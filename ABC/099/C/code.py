@@ -1,5 +1,6 @@
 from functools import reduce
 import math
+import bisect
 
 def main():
     # 文字列の2進数を数値にする
@@ -33,7 +34,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +51,27 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
+    N = int(input())
+    N_max = 100000
+    l = []
+    l.append(1)
+    tmp = 1
+    while tmp < N_max:
+        tmp *= 6
+        l.append(tmp)
+    tmp = 1
+    while tmp < N_max:
+        tmp *= 9
+        l.append(tmp)
+    l.sort()
+    d = [N_max for _ in range(N+1)]
+    d[0] = 0
+    for i in range(1,N+1):
+        d[i] = d[i-1] + 1
+        for j in range(len(l)):
+            if i >= l[j]:
+                d[i] = min(d[i],d[i-l[j]]+1)
+    print(d[N])
     
 if __name__ == '__main__':
     main()
