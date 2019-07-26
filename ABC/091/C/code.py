@@ -1,5 +1,6 @@
 from functools import reduce
 import math
+from operator import itemgetter
 
 def main():
     # 文字列の2進数を数値にする
@@ -33,7 +34,7 @@ def main():
     
     # 1文字のみを読み込み
     # 入力:2
-    a = input().rstrip()
+    # a = input().rstrip()
     # 変数:a='2'
     
     # スペース区切りで標準入力を配列として読み込み
@@ -50,8 +51,32 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    
-    print(a)
+    N = int(input())
+    ab = []
+    cd = []
+    for i in range(N):
+        s1, s2 = (int(_) for _ in input().split())
+        ab.append((s1,s2))
+    for i in range(N):
+        s1, s2 = (int(_) for _ in input().split())
+        cd.append((s1,s2))
+    cnt = 0
+    ab = sorted(ab, key = itemgetter(0))
+    cd = sorted(cd, key = itemgetter(0))
+    for i in range(N):
+        rp = -1
+        tmp = -1
+        for j in range(len(ab)):
+            # print(ab[j],cd[i])
+            if ab[j][0]<cd[i][0] and ab[j][1]<cd[i][1]:
+                if ab[j][1] > tmp:                    
+                    tmp = ab[j][1]
+                    rp = j
+        if rp >=0:
+            # print(ab[rp])
+            ab.pop(rp)
+            cnt +=1
+    print(cnt)
     
 if __name__ == '__main__':
     main()
