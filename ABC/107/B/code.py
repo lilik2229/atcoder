@@ -50,15 +50,24 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    D, G = (int(_) for _ in input().split())
-    p = []
-    c = []
-    for i in range(D):
-        p_i, c_i = (int(_) for _ in input().split())
-        p.append(p_i)
-        c.append(c_i)
-        
-    print(a)
-    
+    H, W = (int(_) for _ in input().split())
+    a = []
+    for i in range(H):
+        a.append(list(_ for _ in input()))
+    a_1 = []
+    for i in range(H):
+        if a[i].count('.') != W:
+            a_1.append(a[i])
+    W_bit = list(1 for _ in range(W))
+    for h in range(len(a_1)):
+        for w in range(W):
+            if a_1[h][w] == '#':
+                W_bit[w] = 0    
+
+    for h in range(len(a_1)):
+        for w in range(W):
+            if W_bit[w] == 0:
+                print(a_1[h][w],end='')
+        print('')
 if __name__ == '__main__':
     main()

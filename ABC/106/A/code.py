@@ -50,15 +50,8 @@ def main():
     # 入力:2457
     # a = list(int(_) for _ in input())
     # 変数:a = [2, 4, 5, 7]    
-    D, G = (int(_) for _ in input().split())
-    p = []
-    c = []
-    for i in range(D):
-        p_i, c_i = (int(_) for _ in input().split())
-        p.append(p_i)
-        c.append(c_i)
-        
-    print(a)
+    a, b = (int(_) for _ in input().split())  
+    print((a-1)*(b-1))
     
 if __name__ == '__main__':
     main()
